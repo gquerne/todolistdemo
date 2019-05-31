@@ -18,8 +18,14 @@ public class TaskController {
 
     @GetMapping("/tasks")
     public List<Task> getTasks() {
-        System.out.println("getTasks : "+taskRepository.findAll());
+//        System.out.println(taskRepository.findAll());
         return taskRepository.findAll();
+    }
+
+    @GetMapping("/done")
+    public List<Task> getDoneTasks() {
+        System.out.println(taskRepository.findByIsDoneTrue());
+        return taskRepository.findByIsDoneTrue();
     }
 
 //    TODO add, update
