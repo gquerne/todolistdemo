@@ -4,8 +4,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -43,8 +43,9 @@ public class TaskController {
         model.addAttribute("tasks", taskRepository.findAll());
     }
 
-    @DeleteMapping("/delete")
-    public void deleteTask(Task task) {
+    @DeleteMapping("/delete/{id}")
+    public void deleteTask(@PathVariable("id") long id) {
+        Task task = taskRepository.findById(id);
         taskRepository.delete(task);
     }
 
