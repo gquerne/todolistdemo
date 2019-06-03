@@ -1,9 +1,10 @@
 package apside.com.example.todolistdemo;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,8 +25,27 @@ public class TaskController {
 
     @GetMapping("/done")
     public List<Task> getDoneTasks() {
-        System.out.println(taskRepository.findByIsDoneTrue());
-        return taskRepository.findByIsDoneTrue();
+//        System.out.println(taskRepository.findByDoneTrue());
+        return taskRepository.findByDoneTrue();
+    }
+
+    @PostMapping("/add")
+    public Task addTask(@RequestBody Task task, BindingResult result, Model model) {
+        System.out.println("Spring addTask :" + task);
+        taskRepository.save(task);
+        return task;
+    }
+
+    @PostMapping("/update")
+    public void updateTask(Task task, BindingResult result, Model model) {
+        System.out.println("Spring updateTask :" + task);
+        taskRepository.save(task);
+        model.addAttribute("tasks", taskRepository.findAll());
+    }
+
+    @DeleteMapping("/delete")
+    public void deleteTask(Task task) {
+        taskRepository.delete(task);
     }
 
 //    TODO add, update

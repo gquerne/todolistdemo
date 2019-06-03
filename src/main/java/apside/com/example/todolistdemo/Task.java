@@ -12,17 +12,16 @@ public class Task {
     private String title;
     @Column(name="description")
     private String description;
-    @Column(name="isDone", nullable = false)
-    private boolean isDone;
+    @Column(name="done", nullable = false)
+    private boolean done;
 
     public Task(String title, String description, boolean isDone) {
         this.title = title;
         this.description = description;
-        this.isDone = isDone;
+        this.done = isDone;
     }
 
-    public Task() {
-    }
+    public Task() { }
 
     public long getId() {
         return id;
@@ -43,10 +42,10 @@ public class Task {
     }
 
     public boolean isDone() {
-        return isDone;
+        return done;
     }
     public void setDone(boolean done) {
-        isDone = done;
+        this.done = done;
     }
 
     @Override
@@ -55,7 +54,7 @@ public class Task {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", isDone=" + isDone +
+                ", done=" + done +
                 '}';
     }
 }
