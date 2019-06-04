@@ -17,7 +17,7 @@ public class TaskController {
     @GetMapping("/tasks")
     public List<Task> getTasks() {
 //        System.out.println(taskRepository.findAll());
-        return taskRepository.findAll();
+        return taskRepository.findByDoneFalse();
     }
 
     @GetMapping("/done")
@@ -45,7 +45,5 @@ public class TaskController {
         Task task = taskRepository.findById(id);
         taskRepository.delete(task);
     }
-
-//    TODO update
 
 }
